@@ -20,6 +20,7 @@
             <span class="navbar-toggler-icon "></span>
           </button>
              <div class="collapse navbar-collapse" id="navbarNavDropdown">
+               
                <ul class="navbar-nav ml-auto ">
                   <% if user_signed_in? %>
                     
@@ -28,6 +29,21 @@
                         <%= link_to user_path(current_user.id), class:"nav-link text-light" do %>
                           <i class="fas fa-home"></i>
                           Home
+                        <% end %>
+                        
+                    </li>
+                     <li class="nav-item">
+                    
+                        <%= link_to users_path, class:"nav-link text-light" do %>
+                          <i class="fas fa-users"></i>
+                          Users
+                        <% end %>
+                        
+                    </li>
+                     <li class="nav-item">
+                        <%= link_to books_path, class:"nav-link text-light" do %>
+                          <i class="fas fa-book-open"></i>
+                          Books
                         <% end %>
                         
                     </li>
@@ -41,33 +57,36 @@
                     </li>
                      
                   <% else %>
-                    <li class="nav-item">
-                      <a class="nav-link text-light " href="/">
-                        <i class="fas fa-home"></i>
-                        Home
-                        </a>
-                    </li>
+                     <li class="nav-item">
+                        <%= link_to root_path, class:"nav-link text-light" do %>
+                          <i class="fas fa-home"></i>
+                          Home
+                        <% end %>
+                        
+                     </li>
+                      <li class="nav-item">
+                         <%= link_to about_path, class:"nav-link text-light" do %>
+                          <i class="fas fa-link"></i>
+                          About
+                        <% end %>
+                        
+                     </li>
+                     <li class="nav-item">
+                        <%= link_to new_user_registration_path, class:"nav-link text-light" do %>
+                           <i class="fas fa-user-plus"></i>
+                            Sign up
+                        <% end %>
+                        
+                     </li>
+                   
+                     <li class="nav-item">
+                        <%= link_to new_user_session_path, class:"nav-link text-light" do %>
+                          <i class="fas fa-sign-in-alt"></i>
+                           Log in
+                        <% end %>
+                        
+                     </li>
                     
-                    <li class="nav-item">
-                     <a class="nav-link text-light" href="/homes/about">
-                       <i class="fas fa-link"></i>
-                        about
-                        </a>
-                    </li>
-                    
-                    <li class="nav-item">
-                     <a class="nav-link text-light" href="/users/sign_up">
-                       <i class="fas fa-user-plus"></i>
-                       Sign up
-                       </a>
-                    </li>
-                    
-                    <li class="nav-item">
-                      <a class="nav-link text-light" href="/users/sign_in">
-                        <i class="fas fa-sign-in-alt"></i>
-                        Log in
-                        </a>
-                    </li>
                   <% end %>
                   
                 </ul>
@@ -75,6 +94,12 @@
         </div>
       </nav>  
     </header>
+   <% if flash[:notice] %>
+     <p id="notice">
+       <%= flash[:notice] %>
+     </p>
+   <% end %>
+    
     <%= yield %>
     <footer>
       <div class="container mt-5">
